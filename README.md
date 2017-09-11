@@ -6,6 +6,12 @@ This project is intended for people who know how to use Play and want to get sta
 
 You should only need to clone this project if you are modifying the giter8 template.  For information on giter8 templates, please see http://www.foundweekends.org/giter8/
 
+## What's the difference from play-scala-seed?
+This project was designed to be a professional out-of-the-box template.
+The differences between this template and official [play-scala-seed](https://github.com/playframework/play-scala-seed.g8) are:
+
+* Formatter: code is formatted automatically by [scalafmt plugin](http://scalameta.org/scalafmt/);
+
 ## Running
 
 If you want to create a project:
