@@ -13,8 +13,9 @@ organization := "$organization$"
 
 lazy val root = (project in file(".")).settings(commonSettings: _*).enablePlugins(PlayScala)
 
-libraryDependencies += guice
-libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "$scalatestplusplay_version$" % Test
+libraryDependencies ++= Dependencies.libraries
+
+resolvers ++= Dependencies.resolvers
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "$organization$.controllers._"
