@@ -1,11 +1,17 @@
+import com.typesafe.config.ConfigFactory
+
+val conf = ConfigFactory.parseFile(new File("conf/application.conf")).resolve()
+
+val commonSettings = Seq(
+  scalaVersion := "2.12.6",
+  version := conf.getString("app.version")
+)
+
 name := """$name$"""
+
 organization := "$organization$"
 
-version := "1.0-SNAPSHOT"
-
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
-
-scalaVersion := "2.12.6"
+lazy val root = (project in file(".")).settings(commonSettings: _*).enablePlugins(PlayScala)
 
 libraryDependencies += guice
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
