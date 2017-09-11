@@ -15,7 +15,7 @@ lazy val root = (project in file(".")).settings(commonSettings: _*).enablePlugin
 
 libraryDependencies ++= Dependencies.libraries
 
-resolvers ++= Dependencies.resolvers
+resolvers ++= Resolvers.resolvers
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "$organization$.controllers._"
