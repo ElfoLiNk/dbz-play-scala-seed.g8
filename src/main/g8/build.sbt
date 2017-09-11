@@ -26,6 +26,8 @@ commands += Command.args("scalafmt", "Run scalafmt cli.") {
     state
 }
 
+onLoad in Global := (Command.process("scalafmt", _: State)) compose (onLoad in Global).value
+
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "$organization$.controllers._"
 
