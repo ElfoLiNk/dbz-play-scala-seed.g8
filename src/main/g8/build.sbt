@@ -17,6 +17,15 @@ libraryDependencies ++= Dependencies.libraries
 
 resolvers ++= Resolvers.resolvers
 
+def latestScalafmt = "1.2.0"
+commands += Command.args("scalafmt", "Run scalafmt cli.") {
+  case (state, args) =>
+    val Right(scalafmt) =
+      org.scalafmt.bootstrap.ScalafmtBootstrap.fromVersion(latestScalafmt)
+    scalafmt.main("--non-interactive" +: args.toArray)
+    state
+}
+
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "$organization$.controllers._"
 
