@@ -13,23 +13,26 @@ organization := "$organization$"
 
 lazy val root = (project in file("."))
   .settings(commonSettings: _*)
-  .enablePlugins(PlayScala)
   .settings(name := conf.getString("app.name") + "-root")
   .settings(
     run := {
       (run in playModule in Compile).evaluated
-    }
+    },
+    publishArtifact := false,
+    publish := {},
+    publishLocal := {}
   )
   .aggregate(playModule)
 
 lazy val playModule = (project in file("$play_module$"))
   .settings(commonSettings: _*)
-  .enablePlugins(PlayScala)
+  .enablePlugins(PlayScala, JavaServerAppPackaging)
   .disablePlugins(PlayLayoutPlugin)
   .settings(
     libraryDependencies ++= Dependencies.libraries,
     resolvers ++= Dependencies.resolvers,
-    scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
+    scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
+    packageName in Docker := """$name$"""
   )
 
 def latestScalafmt = "1.2.0"
@@ -44,6 +47,8 @@ commands += Command.args("scalafmt", "Run scalafmt cli.") {
 onLoad in Global := (Command.process("scalafmt", _: State)) compose (onLoad in Global).value
 
 addCommandAlias("run-local", "playModule/run -Dconfig.resource=application.conf -Dhttp.port=9000")
+
+addCommandAlias("docker-snapshot", ";set isSnapshot in ThisBuild := true;docker:publishLocal")
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "$organization$.controllers._"
