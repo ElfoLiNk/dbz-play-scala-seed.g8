@@ -1,4 +1,4 @@
-package $package$.controllers
+package $package$.controller
 
 import javax.inject._
 import play.api._

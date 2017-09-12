@@ -1,6 +1,6 @@
-package $package$.test.controllers
+package $package$.test.controller
 
-import $package$.controllers.HomeController
+import $package$.controller.HomeController
 import org.scalatestplus.play._
 import org.scalatestplus.play.guice._
 import play.api.test._
