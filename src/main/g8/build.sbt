@@ -1,6 +1,6 @@
 import com.typesafe.config.ConfigFactory
 
-val conf = ConfigFactory.parseFile(new File("conf/application.conf")).resolve()
+val conf = ConfigFactory.parseFile(new File("$play_module$/src/main/resources/application.conf")).resolve()
 
 val commonSettings = Seq(
   scalaVersion := "2.12.6",
@@ -11,11 +11,26 @@ name := """$name$"""
 
 organization := "$organization$"
 
-lazy val root = (project in file(".")).settings(commonSettings: _*).enablePlugins(PlayScala)
+lazy val root = (project in file("."))
+  .settings(commonSettings: _*)
+  .enablePlugins(PlayScala)
+  .settings(name := conf.getString("app.name") + "-root")
+  .settings(
+    run := {
+      (run in play in Compile).evaluated
+    }
+  )
+  .aggregate(play)
 
-libraryDependencies ++= Dependencies.libraries
-
-resolvers ++= Resolvers.resolvers
+lazy val play = (project in file("$play_module$"))
+  .settings(commonSettings: _*)
+  .enablePlugins(PlayScala)
+  .disablePlugins(PlayLayoutPlugin)
+  .settings(
+    libraryDependencies ++= Dependencies.libraries,
+    resolvers ++= Dependencies.resolvers,
+    scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
+  )
 
 def latestScalafmt = "1.2.0"
 commands += Command.args("scalafmt", "Run scalafmt cli.") {
