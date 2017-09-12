@@ -1,6 +1,10 @@
 # $name$
 
 
+## Run local application
+`sbt run-local`
+
+
 ##Formatter
 
 Code is formatted automatically on each source load by [scalafmt plugin](http://scalameta.org/scalafmt/).

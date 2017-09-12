@@ -10,7 +10,10 @@ You should only need to clone this project if you are modifying the giter8 templ
 This project was designed to be a professional out-of-the-box template.
 The differences between this template and official [play-scala-seed](https://github.com/playframework/play-scala-seed.g8) are:
 
+* Basic configurations: configurations defined application.conf instead of build.sbt;
 * Formatter: code is formatted automatically by [scalafmt plugin](http://scalameta.org/scalafmt/);
+* Project Module: play has a single project module with sbt default layout, instead of play layout;
+
 
 ## Running
 
