@@ -17,12 +17,12 @@ lazy val root = (project in file("."))
   .settings(name := conf.getString("app.name") + "-root")
   .settings(
     run := {
-      (run in play in Compile).evaluated
+      (run in playModule in Compile).evaluated
     }
   )
-  .aggregate(play)
+  .aggregate(playModule)
 
-lazy val play = (project in file("$play_module$"))
+lazy val playModule = (project in file("$play_module$"))
   .settings(commonSettings: _*)
   .enablePlugins(PlayScala)
   .disablePlugins(PlayLayoutPlugin)
@@ -42,6 +42,8 @@ commands += Command.args("scalafmt", "Run scalafmt cli.") {
 }
 
 onLoad in Global := (Command.process("scalafmt", _: State)) compose (onLoad in Global).value
+
+addCommandAlias("run-local", "playModule/run -Dconfig.resource=application.conf -Dhttp.port=9000")
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "$organization$.controllers._"
