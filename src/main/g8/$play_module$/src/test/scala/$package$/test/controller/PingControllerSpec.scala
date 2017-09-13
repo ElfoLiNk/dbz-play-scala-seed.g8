@@ -4,10 +4,10 @@ import $package$.controller.PingController
 import org.scalatestplus.play._
 import play.api.test.Helpers._
 import play.api.test._
-import org.scalatestplus.play.guice.GuiceOneAppPerTest
 import $package$.controller._
+import $package$.test.ControllerBaseSpec
 
-class PingControllerSpec extends PlaySpec with GuiceOneAppPerTest {
+class PingControllerSpec extends ControllerBaseSpec {
 
   "PingController GET" should {
 
