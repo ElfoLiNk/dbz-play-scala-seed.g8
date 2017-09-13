@@ -3,6 +3,9 @@
 # https://www.playframework.com/documentation/latest/ScalaRouting
 # ~~~~
 
+# Ping API could be used to verify if an application is UP&Running
+GET     /api/v1/ping                $package$.controller.PingController.ping
+
 # An example controller showing a sample home page
 GET     /                           $package$.controller.HomeController.index
 
