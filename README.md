@@ -14,6 +14,7 @@ The differences between this template and official [play-scala-seed](https://git
 * Formatter: code is formatted automatically by [scalafmt plugin](http://scalameta.org/scalafmt/);
 * Project Module: play has a single project module with sbt default layout, instead of play layout;
 * Docker: create docker image and publish locally by [sbt-native-packager](https://github.com/sbt/sbt-native-packager);
+* Logging: placeholder in order to expand and insert a more complex logger;
 
 ## Running
 
