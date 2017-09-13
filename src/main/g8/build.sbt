@@ -51,6 +51,8 @@ addCommandAlias("run-local", "playModule/run -Dconfig.resource=application.conf 
 
 addCommandAlias("docker-snapshot", ";set isSnapshot in ThisBuild := true;docker:publishLocal")
 
+fork in Test := true
+
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "$organization$.controllers._"
 
