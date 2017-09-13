@@ -4,7 +4,8 @@ val conf = ConfigFactory.parseFile(new File("$play_module$/src/main/resources/ap
 
 val commonSettings = Seq(
   scalaVersion := "2.12.3",
-  version := conf.getString("app.version")
+  version := conf.getString("app.version"),
+  javaOptions in Test += "-Dlogger.resource=logback-test.xml"
 )
 
 name := """$name$"""
