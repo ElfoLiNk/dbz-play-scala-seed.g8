@@ -21,8 +21,11 @@
 ## Logging
 
 ### Custom logger
-the trait `src/main/scala/$package$/logging/CustomLogger.scala` is a
+The trait `src/main/scala/$package$/logging/CustomLogger.scala` is a
 placeholder in order to expand and insert a more complex logger.
+
+### Basic logging filter
+The class `src/main/scala/$package$/playcustom/filter/Filters.scala` is a basic logging filter for print out all incoming requests.
 
 
 ## Formatter
