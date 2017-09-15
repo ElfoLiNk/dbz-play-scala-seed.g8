@@ -6,6 +6,9 @@
 # Ping API could be used to verify if an application is UP&Running
 GET     /api/v1/ping                $package$.controller.PingController.ping
 
+# Product controller API
+POST    /api/v1/product             $package$.controller.MathController.product
+
 # An example controller showing a sample home page
 GET     /                           $package$.controller.HomeController.index
 
