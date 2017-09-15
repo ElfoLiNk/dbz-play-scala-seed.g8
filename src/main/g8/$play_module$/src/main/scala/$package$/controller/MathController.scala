@@ -9,6 +9,9 @@ import play.mvc.Http
  */
 @Singleton
 class MathController @Inject()(cc: ControllerComponents) extends CustomBaseController(cc) {
+
+  /** Product function that receive input and execute mathematical calculation.
+   */
   def product = Action {
     Ok("""{"result":0.0}""").as(Http.MimeTypes.JSON)
   }
