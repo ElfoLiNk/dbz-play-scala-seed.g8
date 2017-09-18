@@ -8,27 +8,29 @@ import play.api.test._
 import play.mvc.Http
 import $package$.test.ControllerBaseSpec
 import $package$.controller._
+import $package$.model.MathModel._
+import $package$.service.MathService
+import org.scalactic._
+import scala.concurrent.duration._
+import scala.concurrent.Await
 
 class MathControllerSpec extends ControllerBaseSpec {
-
-  "MathController POST" should {
-    "return 0 for empty input" in callController(None, 0)
+  "Product input values" should {
+    "return 0 for empty input" in callProduct(ProductInput(None), 0)
+    "return 0 for empty list" in callProduct(ProductInput(Some(List.empty)), 0)
+    "return a specific value a list of values" in callProduct(ProductInput(Some(List(1, -4.1, 20.2, 5.8))), -480.356)
   }
 
-  def callController(input: Option[List[Double]], valueOut: Double) = {
-    val inputJson = input match {
-      case None => Json.obj()
-      case Some(x) => Json.obj("values" -> x)
-    }
-
+  def callProduct(input: ProductInput, valueOut: Double) = {
     val request = FakeRequest(POST, routes.MathController.product.url)
-      .withJsonBody(inputJson)
+      .withJsonBody(Json.toJson(input))
     val result    = route(app, request).get
 
+    implicit val doubleEquality = TolerantNumerics.tolerantDoubleEquality(0.00001)
     status(result) mustBe OK
     contentType(result) mustBe Some(Http.MimeTypes.JSON)
-    contentAsString(result) mustBe stringResult(valueOut)
-  }
 
-  def stringResult(value: Double) = s"""{"result":\${value}}"""
+    val resultVal = Json.fromJson[ProductOutput](Json.parse(contentAsString(result))).get.result
+    resultVal === valueOut mustBe true
+  }
 }
