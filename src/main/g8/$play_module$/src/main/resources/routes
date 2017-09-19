@@ -3,14 +3,45 @@
 # https://www.playframework.com/documentation/latest/ScalaRouting
 # ~~~~
 
-# Ping API could be used to verify if an application is UP&Running
+###
+# tags:
+#   - Ping API
+# summary: Check if an application is UP&Running
+# description: An API that response with a "pong" text if the application is UP&Running
+# responses:
+#    200:
+#      description: Success
+###
 GET     /api/v1/ping                $package$.controller.PingController.ping
 
-# Product controller API
+###
+# tags:
+#   - Product API
+# summary: Evaluate product based on a series of input decimal values
+# description: Return a value based on a series of input decimal values
+# parameters:
+#   - name: body
+#     schema:
+#       \$ref: '#/definitions/$package$.model.MathModel.ProductInput'
+# responses:
+#    200:
+#      description: Success
+#      schema:
+#        \$ref: '#/definitions/$package$.model.MathModel.ProductOutput'
+#    400:
+#      description: Bad request
+###
++ nocsrf
 POST    /api/v1/product             $package$.controller.MathController.product
 
+### NoDocs ###
++ nocsrf
+GET   /docs/swagger-ui/*file        controllers.Assets.at(path:String="/public/lib/swagger-ui", file:String)
+
 # An example controller showing a sample home page
+### NoDocs ###
 GET     /                           $package$.controller.HomeController.index
 
 # Map static resources from the /public folder to the /assets URL path
+### NoDocs ###
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

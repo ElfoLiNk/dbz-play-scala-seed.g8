@@ -27,13 +27,14 @@ lazy val root = (project in file("."))
 
 lazy val playModule = (project in file("$play_module$"))
   .settings(commonSettings: _*)
-  .enablePlugins(PlayScala, JavaServerAppPackaging)
+  .enablePlugins(PlayScala, JavaServerAppPackaging, SwaggerPlugin)
   .disablePlugins(PlayLayoutPlugin)
   .settings(
     libraryDependencies ++= Dependencies.libraries,
     resolvers ++= Dependencies.resolvers,
     scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
-    packageName in Docker := """$name$"""
+    packageName in Docker := """$name$""",
+    swaggerDomainNameSpaces := Seq("$package$.model")
   )
 
 def latestScalafmt = "1.2.0"
@@ -47,7 +48,7 @@ commands += Command.args("scalafmt", "Run scalafmt cli.") {
 
 onLoad in Global := (Command.process("scalafmt", _: State)) compose (onLoad in Global).value
 
-addCommandAlias("run-local", "playModule/run -Dconfig.resource=application.conf -Dhttp.port=9000")
+addCommandAlias("run-local", ";project playModule;swagger;run -Dconfig.resource=application.conf -Dhttp.port=9000")
 
 addCommandAlias("docker-snapshot", ";set isSnapshot in ThisBuild := true;docker:publishLocal")
 

@@ -17,6 +17,17 @@
 
 `\$ docker run -e PLAY_HTTP_SECRET="app-secret-key" -i -p 9000:9000 -t $name$:0.1.0`
 
+## Swagger
+
+1. In order to generate swagger documentation you can run:
+`sbt swagger`
+or
+`sbt run-local`
+
+2. Run locally the application:
+`sbt run-local`
+
+3. Open in a browser [local swagger ui API](http://localhost:9000/docs/swagger-ui/index.html?url=/assets/swagger.json)
 
 ## Logging
 
