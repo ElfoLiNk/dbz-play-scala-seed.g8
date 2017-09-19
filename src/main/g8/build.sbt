@@ -34,7 +34,8 @@ lazy val playModule = (project in file("$play_module$"))
     resolvers ++= Dependencies.resolvers,
     scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
     packageName in Docker := """$name$""",
-    swaggerDomainNameSpaces := Seq("$package$.model")
+    swaggerDomainNameSpaces := Seq("$package$.model"),
+    coverageExcludedPackages := "<empty>;Reverse.*;.*Routes.*"
   )
 
 def latestScalafmt = "1.2.0"

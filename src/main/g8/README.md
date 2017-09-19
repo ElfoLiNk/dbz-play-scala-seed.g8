@@ -27,7 +27,17 @@ or
 2. Run locally the application:
 `sbt run-local`
 
-3. Open in a browser [local swagger ui API](http://localhost:9000/docs/swagger-ui/index.html?url=/assets/swagger.json)
+3. Open by a browser [local swagger ui API](http://localhost:9000/docs/swagger-ui/index.html?url=/assets/swagger.json)
+
+## Test Coverage
+In order to have a test coverage follow these steps:
+
+1. `sbt clean coverage test`
+
+2. `sbt coverageReport`
+
+3. Open by a browser `$play_module$/target/scala-2.12/scoverage-report/index.html`
+
 
 ## Logging
 
