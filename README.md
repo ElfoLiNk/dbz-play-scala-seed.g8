@@ -17,6 +17,7 @@ The differences between this template and official [play-scala-seed](https://git
 * Logging: basic logging filter for all incoming requests and a placeholder in order to expand and insert a more complex logger;
 * Controller example: there are some controller for example with a suite test;
 * API documentation: API documentation created by [swagger](https://github.com/iheartradio/play-swagger)
+* Test covarage: create report about test covarage using [sbt-scoverage](https://github.com/scoverage/sbt-scoverage)
 
 ## Running
 
