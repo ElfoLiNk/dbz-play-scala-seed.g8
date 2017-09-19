@@ -15,6 +15,8 @@ The differences between this template and official [play-scala-seed](https://git
 * Project Module: play has a single project module with sbt default layout, instead of play layout;
 * Docker: create docker image and publish locally by [sbt-native-packager](https://github.com/sbt/sbt-native-packager);
 * Logging: basic logging filter for all incoming requests and a placeholder in order to expand and insert a more complex logger;
+* Controller example: there are some controller for example with a suite test;
+* API documentation: API documentation created by [swagger](https://github.com/iheartradio/play-swagger)
 
 ## Running
 
