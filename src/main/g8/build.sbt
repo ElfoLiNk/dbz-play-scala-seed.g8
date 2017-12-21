@@ -38,17 +38,6 @@ lazy val playModule = (project in file("$play_module$"))
     coverageExcludedPackages := "<empty>;Reverse.*;.*Routes.*"
   )
 
-def latestScalafmt = "1.2.0"
-commands += Command.args("scalafmt", "Run scalafmt cli.") {
-  case (state, args) =>
-    val Right(scalafmt) =
-      org.scalafmt.bootstrap.ScalafmtBootstrap.fromVersion(latestScalafmt)
-    scalafmt.main("--non-interactive" +: args.toArray)
-    state
-}
-
-onLoad in Global := (Command.process("scalafmt", _: State)) compose (onLoad in Global).value
-
 addCommandAlias("run-local", ";project playModule;swagger;run -Dconfig.resource=application.conf -Dhttp.port=9000")
 
 addCommandAlias("docker-snapshot", ";set isSnapshot in ThisBuild := true;docker:publishLocal")
